@@ -10,3 +10,4 @@ data/index/
 data/runs/
 data/pool/
 data/novelty/
+data/*.tar.gz
