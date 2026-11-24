@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 data/raw/
+data/xbrl/
+.cache/llm/
 *.duckdb
 *.duckdb.wal
 data/index/
