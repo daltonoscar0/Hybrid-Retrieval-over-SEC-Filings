@@ -1,5 +1,7 @@
 # Ticker
 
+[![tests](https://github.com/daltonoscar0/Hybrid-Retrieval-over-SEC-Filings/actions/workflows/tests.yml/badge.svg)](https://github.com/daltonoscar0/Hybrid-Retrieval-over-SEC-Filings/actions/workflows/tests.yml)
+
 Hybrid BM25 and dense retrieval over SEC filings, with a per sentence novelty
 layer that separates language a company has never used before from the
 boilerplate it reprints every year.

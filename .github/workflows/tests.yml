@@ -1,0 +1,33 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # The project builds with uv_build and ships a uv.lock, so uv installs
+      # the exact locked versions rather than re-resolving.
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      # 3.12 per requires-python = ">=3.12".
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install
+        run: uv sync --locked --all-extras
+
+      # No network and no SEC downloads: the tests inject fake encoders rather
+      # than fetching models, and the ones that need a populated data/raw/ or
+      # the Hugging Face cache skip themselves (tests/test_dense.py:378,
+      # tests/test_section_extraction.py:748-771). Nothing needed marking.
+      - name: Run tests
+        run: uv run pytest -q
